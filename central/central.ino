@@ -12,8 +12,8 @@ int countConnected = 0;
 int countToConnect = 0;
 
 // WIFI CREDENTIALS
-const char* ssid = "My ASUS"; 
-const char* password = "12344321";
+const char* ssid = "Cruz_2"; 
+const char* password = "50801060";
 
 // Server 
 String serverURL = "http://35.239.9.88:1337/";
@@ -28,7 +28,8 @@ BLERemoteCharacteristic* pRemoteCharacteristic;
 // Called on any peripheral notification 
 static void notifyCallback( BLERemoteCharacteristic* pBLERemoteCharacteristic, uint8_t* pData, size_t length, bool isNotify) {
 
-  Serial.printf("Received Value: %s \n",(char*) pData);
+  String strData = (char *) pData;
+  Serial.printf("\n\nReceived Value: %s \n", (char *) pData);
 
    if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 
@@ -37,13 +38,14 @@ static void notifyCallback( BLERemoteCharacteristic* pBLERemoteCharacteristic, u
     http.begin( serverURL+"alerts" );             //Specify destination for HTTP request
     http.addHeader("Content-Type", "text/plain");             //Specify content-type header
 
+    Serial.println("posting...");
     int httpResponseCode = http.POST( (char*) pData );        //Send the actual POST request
 
     if( httpResponseCode > 0 ) {
 
      String response = http.getString();                       //Get the response to the request
 
-     // Serial.println(httpResponseCode);   //Print return code
+     Serial.println(httpResponseCode);   //Print return code
      // Serial.println(response);           //Print request answer
 
     } else {
@@ -51,6 +53,7 @@ static void notifyCallback( BLERemoteCharacteristic* pBLERemoteCharacteristic, u
      Serial.println(httpResponseCode);
     }
     http.end();  //Free resources
+    Serial.println(" -Resource freed");
   } else {
      Serial.println("Error in WiFi connection");
   }

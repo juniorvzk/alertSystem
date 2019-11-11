@@ -10,7 +10,7 @@ module.exports = {
         console.log("body: ", req.body );
         // console.log("postAlert\ndata: ", req.data );
         // console.log("postAlert\nquery: ", req.query );
-        // console.log("postAlert\ntext: ", req.query );
+        console.log("postAlert\nbody: ", req.body );
         var item = await Alerts.create( req.body ).fetch();
         return res.send(item);
         // return res.send({status: 200, item});

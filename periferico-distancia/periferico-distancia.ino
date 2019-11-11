@@ -72,27 +72,27 @@ void setup() {
   Serial.println("Waiting a client connection to notify...");
 }
 
-String sensorType = "distancia:";
+String sensorType = "{\"sensorType\":\"distancia\",\"value\":\"";
 std::string data;
 float distCM = 0;
 float lastDistCM = 0;
 
 long microsec = 0;
+unsigned long measuredAt;
 
 void loop() {
   microsec = ultrasonic.timing();
   distCM = ultrasonic.convert(microsec, Ultrasonic::CM);
-
+  
   if ( distCM != lastDistCM ){
-    //Exibe informacoes no serial monitor
-    Serial.print("Distancia em cm: ");
-    Serial.println(distCM);
-    data = (sensorType+distCM).c_str();
-
+    measuredAt = millis();
+    // Serial.printf("[%s]Distancia em cm: %d", measuredAt, distCM);
+    data = (sensorType+distCM+"\",\"measuredAt\":\""+measuredAt+"\"}").c_str();
+    Serial.printf("Distancia: %f \n", distCM);
     pCharacteristic->setValue(data);
     pCharacteristic->notify();
     lastDistCM = distCM;
-    delay(500);
+    delay(2000);
     /* code */
   }
 

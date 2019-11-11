@@ -70,22 +70,26 @@ void setup() {
   Serial.println("Waiting a client connection to notify...");
 }
 
-String sensorType = "umidade:";
+String sensorType = "{\"sensorType\":\"umidade\",\"value\":\"";
 std::string data;
 
 long leitura = 0;
 int umidade = 0;
+unsigned long measuredAt;
 
 void loop() {
   //Exibe informacoes no serial monitor
   leitura = analogRead(medidor);
-  Serial.println(leitura);
+  Serial.printf("leitura: %d - ", leitura);
+
   umidade = map(leitura, 3071, 4095, 100, 0);
-  data = (sensorType+umidade).c_str();
+  measuredAt = millis();
 
-  Serial.print(umidade+leitura);
+  data = (sensorType+umidade+"\",\"measuredAt\":\""+measuredAt+"\"}").c_str();
+
+  Serial.printf("umidade: %d",umidade);
   Serial.println("%");
-
+  
   pCharacteristic->setValue(data);
   pCharacteristic->notify();
 
