@@ -43,7 +43,9 @@ Template.Alertas.helpers({
 
 Template.Alertas.events({
   'click .btn'(event, instance) {
-    console.log("click", this);
+    console.log("click", Template.instance());
+    
+    $(".reactive-table-input").val(this.macAddress).trigger('submit');
     // increment the counter when button is clicked
     // instance.counter.set(instance.counter.get() + 1);
   },
