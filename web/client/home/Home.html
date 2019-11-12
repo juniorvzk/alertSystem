@@ -21,7 +21,10 @@
 </template>
       
   <template name="Alertas">
-          <h2>Alertas</h2>
+          <h2>Alertas
+            <button class="btn {{alertLevel}}">value=0</button>
+            <button class="btn {{alertLevel}}">value=0 e existe mensagem</button>
+          </h2>
           {{#each alerts}}
             {{#if alertLevel}}
               <button class="btn {{alertLevel}}">{{macAddress}}</button>
