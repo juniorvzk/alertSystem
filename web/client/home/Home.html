@@ -1,0 +1,32 @@
+<template name="Home">
+    <h1>Home</h1>
+    <div class="container-fluid">
+
+        <div class="col-lg-12 col-xl-12 form-group alert-info" style="padding:10px; border-radius: 10px; color:black;" >
+                {{> Alertas}}
+        </div>
+            
+            <div class="col-lg-12 col-xl-12 form-group alert-success" style="padding:10px; border-radius: 10px; color:black;" >
+                    {{> Perifericos}}
+                </div>
+            </div>
+</template>
+
+<template name="Perifericos">
+    <h2>Perifericos</h2>  
+    <div class="peripheralsTable">
+            {{> reactiveTable  settings=settings}}
+
+    </div>
+</template>
+      
+  <template name="Alertas">
+          <h2>Alertas</h2>
+          {{#each alerts}}
+            {{#if alertLevel}}
+              <button class="btn {{alertLevel}}">{{macAddress}}</button>
+            {{/if}}
+          {{else}}
+            <p>Nenhum alerta</p>
+          {{/each}}          
+</template>

@@ -1,0 +1,13 @@
+{
+    "public": {
+        "ga": {
+            "account": "UA-XXXX-X"
+        }
+    },
+    "s3": {
+        "key": "AWSKEY",
+        "secret": "AWSSECRET",
+        "bucket": "BUCKETNAME",
+        "region": "us-west-1"
+    }
+}

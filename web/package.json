@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "private": true,
+  "scripts": {
+    "start": "MONGO_URL=mongodb://localhost:27017/alertSystem meteor run",
+    "test": "meteor test --once --driver-package meteortesting:mocha",
+    "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
+    "visualize": "meteor --production --extra-packages bundle-visualizer"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.3.4",
+    "@google-cloud/storage": "^3.0.2",
+    "anychart": "^8.6.0",
+    "bcrypt-nodejs": "0.0.3",
+    "meteor-node-stubs": "^0.4.1",
+    "simpl-schema": "^1.5.5"
+  },
+  "meteor": {
+    "mainModule": {},
+    "testModule": "tests/main.js"
+  }
+}
