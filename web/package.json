@@ -13,7 +13,7 @@
     "anychart": "^8.6.0",
     "bcrypt-nodejs": "0.0.3",
     "meteor-node-stubs": "^0.4.1",
-    "simpl-schema": "^1.5.5"
+    "simpl-schema": "^1.10.2"
   },
   "meteor": {
     "mainModule": {},
